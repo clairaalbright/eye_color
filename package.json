@@ -1,0 +1,17 @@
+{
+  "name": "eye-color-identifier",
+  "version": "1.0.0",
+  "description": "Identifies user eye color from camera with Pantone matching",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "media-typer": "^1.1.0",
+    "multer": "^1.4.5-lts.1",
+    "sharp": "^0.33.2"
+  }
+}

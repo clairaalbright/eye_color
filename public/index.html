@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Eye Color Identifier</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>Eye Color Identifier</h1>
+      <p class="subtitle">Position your eye in the frame and capture to analyze</p>
+    </header>
+
+    <main class="main">
+      <section id="camera-section" class="section camera-section">
+        <div class="camera-wrapper">
+          <video id="video" autoplay playsinline muted></video>
+          <div class="eye-guide" aria-hidden="true"></div>
+        </div>
+        <div class="controls">
+          <button type="button" id="capture-btn" class="btn btn-primary" disabled>Capture Eye</button>
+          <button type="button" id="switch-camera" class="btn btn-secondary">Switch Camera</button>
+        </div>
+      </section>
+
+      <section id="preview-section" class="section preview-section hidden">
+        <div class="preview-wrapper">
+          <canvas id="preview-canvas"></canvas>
+          <div class="preview-actions">
+            <button type="button" id="retake-btn" class="btn btn-secondary">Retake</button>
+            <button type="button" id="analyze-btn" class="btn btn-primary">Analyze</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="results-section" class="section results-section hidden">
+        <div id="results-loading" class="loading hidden">
+          <div class="spinner"></div>
+          <p>Analyzing your eye color…</p>
+        </div>
+        <div id="results-content" class="results-content hidden">
+          <h2>Your Eye Color</h2>
+          <div class="general-color card">
+            <h3>General Color</h3>
+            <div class="general-swatch" id="general-swatch"></div>
+            <p class="color-name" id="general-name"></p>
+            <p class="color-code" id="general-code"></p>
+          </div>
+          <div class="breakdown card">
+            <h3>Color Breakdown</h3>
+            <p class="hint">Colors detected in your iris</p>
+            <div id="breakdown-list" class="breakdown-list"></div>
+          </div>
+          <div class="pantone card">
+            <h3>Pantone Matches</h3>
+            <p class="hint">Closest Pantone colors to your eye</p>
+            <div id="pantone-list" class="pantone-list"></div>
+          </div>
+          <button type="button" id="new-scan-btn" class="btn btn-primary">New Scan</button>
+        </div>
+        <div id="results-error" class="error-message hidden"></div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

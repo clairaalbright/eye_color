@@ -31,24 +31,27 @@
   background: linear-gradient(180deg, #060a12 0%, #0a0f1a 40%, #050810 100%);
 }
 
+/* Dense little stars across the dark sky (like a wide-field galaxy view) */
 .starfield {
   position: absolute;
   inset: 0;
-  opacity: 0.9;
+  opacity: 1;
   background-image:
-    radial-gradient(1.5px 1.5px at 15% 10%, white, transparent),
-    radial-gradient(1px 1px at 45% 8%, white, transparent),
-    radial-gradient(2px 2px at 78% 12%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1px 1px at 22% 35%, white, transparent),
-    radial-gradient(1.5px 1.5px at 88% 28%, white, transparent),
-    radial-gradient(1px 1px at 5% 55%, white, transparent),
-    radial-gradient(2px 2px at 62% 48%, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 35% 72%, white, transparent),
-    radial-gradient(1.5px 1.5px at 92% 68%, white, transparent),
-    radial-gradient(1px 1px at 8% 88%, white, transparent),
-    radial-gradient(1px 1px at 55% 92%, white, transparent),
-    radial-gradient(2px 2px at 70% 5%, rgba(255,255,255,0.7), transparent);
-  background-size: 100% 100%;
+    radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.95), transparent),
+    radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.75), transparent),
+    radial-gradient(0.5px 0.5px at 50% 50%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(0.5px 0.5px at 50% 50%, rgba(255,255,255,0.4), transparent);
+  background-size:
+    131px 107px,
+    83px 101px,
+    67px 73px,
+    53px 59px;
+  background-position:
+    0 0,
+    19px 7px,
+    11px 31px,
+    23px 17px;
+  background-repeat: repeat;
 }
 
 .scanlines {

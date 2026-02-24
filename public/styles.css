@@ -450,6 +450,43 @@ body {
   margin: 0;
 }
 
+.shade-breakdown-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.shade-breakdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.6rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--surface-border);
+}
+
+.shade-breakdown-item .swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.shade-breakdown-item .shade-name {
+  font-size: 0.85rem;
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+.shade-breakdown-item .pct {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-left: auto;
+}
+
 .breakdown-list,
 .pantone-list {
   display: flex;

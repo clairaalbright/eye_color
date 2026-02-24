@@ -137,6 +137,18 @@
   generalName.textContent = general.name;
   generalCode.textContent = general.colorCode || general.hex;
 
+  var shadeList = document.getElementById('shade-breakdown-list');
+  shadeList.innerHTML = '';
+  (data.shadeBreakdown || []).forEach(function (item) {
+    var div = document.createElement('div');
+    div.className = 'shade-breakdown-item';
+    div.innerHTML =
+      '<div class="swatch" style="background:' + item.hex + '"></div>' +
+      '<span class="shade-name">' + (item.name || item.hex) + '</span>' +
+      '<span class="pct">' + item.percentage + '%</span>';
+    shadeList.appendChild(div);
+  });
+
   const breakdownList = document.getElementById('breakdown-list');
   breakdownList.innerHTML = '';
   (data.breakdown || []).forEach(function (item) {
@@ -144,7 +156,7 @@
     div.className = 'breakdown-item';
     div.innerHTML =
       '<div class="swatch" style="background:' + item.hex + '"></div>' +
-      '<span class="hex">' + item.hex + '</span>' +
+      '<span class="hex">' + (item.shadeName || item.hex) + '</span>' +
       '<span class="pct">' + item.percentage + '%</span>';
     breakdownList.appendChild(div);
   });

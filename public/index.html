@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
   <div class="space-bg" aria-hidden="true">
@@ -18,27 +18,28 @@
   <div class="app">
     <header class="header">
       <h1>Eye Color Identifier</h1>
-      <p class="subtitle">Position your eye in the frame and capture to analyze</p>
+      <p class="subtitle">Line up your eye in the circle, then tap the button once to capture and analyze</p>
     </header>
 
     <main class="main">
       <section id="camera-section" class="section camera-section">
+        <p class="camera-hint" id="camera-hint">Position your eye in the circle — hold the device at arm’s length</p>
         <div class="camera-wrapper">
-          <video id="video" autoplay playsinline muted></video>
+          <video id="video" autoplay playsinline muted aria-label="Live camera view for eye capture"></video>
           <div class="eye-guide" aria-hidden="true"></div>
         </div>
         <div class="controls">
-          <button type="button" id="capture-btn" class="btn btn-primary" disabled>Capture Eye</button>
-          <button type="button" id="switch-camera" class="btn btn-secondary">Switch Camera</button>
+          <button type="button" id="capture-btn" class="btn btn-primary btn-capture" disabled aria-label="Capture eye and analyze color">Capture &amp; Analyze</button>
+          <button type="button" id="switch-camera" class="btn btn-secondary" aria-label="Switch between front and back camera">Switch Camera</button>
         </div>
       </section>
 
       <section id="preview-section" class="section preview-section hidden">
         <div class="preview-wrapper">
-          <canvas id="preview-canvas"></canvas>
+          <canvas id="preview-canvas" aria-label="Captured eye image"></canvas>
           <div class="preview-actions">
             <button type="button" id="retake-btn" class="btn btn-secondary">Retake</button>
-            <button type="button" id="analyze-btn" class="btn btn-primary">Analyze</button>
+            <button type="button" id="analyze-btn" class="btn btn-primary btn-analyze" aria-label="Analyze eye color">Analyze Eye Color</button>
           </div>
         </div>
       </section>
@@ -66,7 +67,7 @@
             <p class="hint">Closest Pantone colors to your eye</p>
             <div id="pantone-list" class="pantone-list"></div>
           </div>
-          <button type="button" id="new-scan-btn" class="btn btn-primary">New Scan</button>
+          <button type="button" id="new-scan-btn" class="btn btn-primary btn-capture" aria-label="Take a new eye scan">New Scan</button>
         </div>
         <div id="results-error" class="error-message hidden"></div>
       </section>

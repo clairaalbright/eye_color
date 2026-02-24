@@ -49,6 +49,7 @@
     stream = await navigator.mediaDevices.getUserMedia(getConstraints());
     video.srcObject = stream;
     captureBtn.disabled = false;
+    captureBtn.focus();
     return true;
   } catch (err) {
     console.error(err);
@@ -66,6 +67,34 @@
   video.srcObject = null;
   }
 
+  function runAnalysis() {
+  if (!capturedDataUrl) return;
+  showSection(resultsSection);
+  resultsLoading.classList.remove('hidden');
+  resultsContent.classList.add('hidden');
+  resultsError.classList.add('hidden');
+
+  fetch(API_BASE + '/api/analyze', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ image: capturedDataUrl })
+  })
+    .then(function (res) { return res.json().then(function (data) { return { res, data }; }); })
+    .then(function (_ref) {
+      var res = _ref.res;
+      var data = _ref.data;
+      if (!res.ok) throw new Error(data.error || 'Analysis failed');
+      renderResults(data);
+      resultsLoading.classList.add('hidden');
+      resultsContent.classList.remove('hidden');
+    })
+    .catch(function (err) {
+      resultsLoading.classList.add('hidden');
+      resultsError.textContent = err.message || 'Something went wrong. Please try again.';
+      resultsError.classList.remove('hidden');
+    });
+  }
+
   captureBtn.addEventListener('click', function () {
   const ctx = previewCanvas.getContext('2d');
   const w = video.videoWidth;
@@ -78,7 +107,7 @@
   ctx.restore();
   capturedDataUrl = previewCanvas.toDataURL('image/jpeg', 0.92);
   stopCamera();
-  showSection(previewSection);
+  runAnalysis();
   });
 
   switchCameraBtn.addEventListener('click', async function () {
@@ -93,27 +122,9 @@
   startCamera();
   });
 
-  analyzeBtn.addEventListener('click', async function () {
+  analyzeBtn.addEventListener('click', function () {
   if (!capturedDataUrl) return;
-  showSection(resultsSection);
-  resultsLoading.classList.remove('hidden');
-
-  try {
-    const res = await fetch(API_BASE + '/api/analyze', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ image: capturedDataUrl })
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Analysis failed');
-    renderResults(data);
-    resultsLoading.classList.add('hidden');
-    resultsContent.classList.remove('hidden');
-  } catch (err) {
-    resultsLoading.classList.add('hidden');
-    resultsError.textContent = err.message || 'Something went wrong. Please try again.';
-    resultsError.classList.remove('hidden');
-  }
+  runAnalysis();
   });
 
   function renderResults(data) {
